@@ -11,6 +11,8 @@ public interface ClienteDAO extends GenericDAO<Cliente,Integer>{
 	public List<Cliente> buscarPorEstado(String estado);
 	public List<Cliente> buscarPorQtDiasReserva(int numDias);
 	public List<Cliente> buscar(String nome, String cidade);
-	public List<Cliente> buscarPorEstados(List<String> estados);
+	public List<Cliente> buscarPorEstados(Collection<String> estados);
+
+	public long contarPorEstado(String uf); 
 
 }

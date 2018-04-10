@@ -1,6 +1,7 @@
 package br.com.fiap.dao.impl;
 
 import java.lang.reflect.ParameterizedType;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 
@@ -56,6 +57,18 @@ public class GenericDAOImpl<T,K> implements GenericDAO<T, K>{
 				em.getTransaction().rollback();
 			throw new DBException("Erro no commit", e);
 		}
+	}
+
+	@Override
+	public List<T> listar() {
+		// TODO Auto-generated method stub
+		return em.createQuery("from " + classe.getName(), classe).getResultList();
+	}
+
+	@Override
+	public long contarTotal() {
+		// TODO Auto-generated method stub
+		return em.createQuery("select count(e) from " + classe.getName() + " e", Long.class).getSingleResult();
 	}
 
 }

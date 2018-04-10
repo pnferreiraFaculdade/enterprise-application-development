@@ -50,11 +50,17 @@ public class ClienteDAOImpl extends GenericDAOImpl<Cliente,Integer> implements C
 	}
 
 	@Override
-	public List<Cliente> buscarPorEstados(List<String> estados) {
+	public List<Cliente> buscarPorEstados(Collection<String> estados) {
 		// TODO Auto-generated method stub
 		TypedQuery<Cliente> query = em.createQuery("from Cliente where endereco.cidade.uf in (:estados)", Cliente.class);
-		query.setParameter("estado", estados);
+		query.setParameter("estados", estados);
 		return query.getResultList();
+	}
+
+	@Override
+	public long contarPorEstado(String uf) {
+		// TODO Auto-generated method stub
+		return em.createQuery("select count(c) from Cliente c where c.endereco.cidade.uf = :estado", Long.class).setParameter("estado", uf).getSingleResult();
 	}
 
 	

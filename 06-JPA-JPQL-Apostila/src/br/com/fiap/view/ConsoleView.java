@@ -87,6 +87,9 @@ public class ConsoleView {
 		for (Cliente cliente : lista9) {
 			System.out.println(cliente.getEndereco().getCidade().getUf());
 		}
+		System.out.println(pacoteDao.contarTotal());
+		
+		System.out.println(pacoteDao.mediaPreco());
 		
 		em.close();
 		factory.close();
