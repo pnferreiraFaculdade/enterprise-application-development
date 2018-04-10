@@ -63,6 +63,18 @@ public class ClienteDAOImpl extends GenericDAOImpl<Cliente,Integer> implements C
 		return em.createQuery("select count(c) from Cliente c where c.endereco.cidade.uf = :estado", Long.class).setParameter("estado", uf).getSingleResult();
 	}
 
+	@Override
+	public List<Cliente> maiorReserva() {
+		// TODO Auto-generated method stub
+		return em.createNativeQuery("with o as (select \r\n" + 
+				"count(cd_reserva) \"count\", \r\n" + 
+				"cliente_id_cliente \"cli\" \r\n" + 
+				"from JPA_T_RESERVA \r\n" + 
+				"group by CLIENTE_ID_CLIENTE)\r\n" + 
+				"select o.\"cli\"\r\n" + 
+				"from o where o.\"count\" = (select max(o.\"count\") from o);", Integer.class).getResultList();
+	}
+
 	
 }
 

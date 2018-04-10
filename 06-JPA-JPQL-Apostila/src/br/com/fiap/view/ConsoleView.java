@@ -90,7 +90,7 @@ public class ConsoleView {
 		System.out.println(pacoteDao.contarTotal());
 		
 		System.out.println(pacoteDao.mediaPreco());
-		
+		System.out.println(clienteDao.maiorReserva());
 		em.close();
 		factory.close();
 	}

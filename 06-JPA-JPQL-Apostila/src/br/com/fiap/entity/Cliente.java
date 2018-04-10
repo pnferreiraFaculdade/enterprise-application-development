@@ -17,7 +17,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-@NamedQuery(name = "Cliente.maiorNumReservas", query = "select r.cliente from Reserva r having count(r) = (select max(count(re)) from Reserva re group by re.cliente) group by re.cliente")
 @Entity
 @Table(name="JPA_T_CLIENTE")
 @SequenceGenerator(name="seqCliente", sequenceName="SEQ_JPA_T_CLIENTE", allocationSize=1)
