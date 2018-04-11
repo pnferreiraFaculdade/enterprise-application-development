@@ -90,9 +90,20 @@ public class ConsoleView {
 		System.out.println(pacoteDao.contarTotal());
 		
 		System.out.println(pacoteDao.mediaPreco());
-		System.out.println(clienteDao.maiorReserva());
-		em.close();
-		factory.close();
+		try {
+		List<Cliente> lista10 = clienteDao.maiorReserva();
+		for (Cliente cliente : lista10) {
+			System.out.println(cliente.getNome());
+		}
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			em.close();
+			factory.close();
+		}
+		
 	}
 
 }

@@ -1,5 +1,6 @@
 package br.com.fiap.dao.impl;
 
+import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.List;
 
@@ -66,13 +67,19 @@ public class ClienteDAOImpl extends GenericDAOImpl<Cliente,Integer> implements C
 	@Override
 	public List<Cliente> maiorReserva() {
 		// TODO Auto-generated method stub
-		return em.createNativeQuery("with o as (select \r\n" + 
+		List<Cliente> teste =  em.createNativeQuery("with o as (select \r\n" + 
 				"count(cd_reserva) \"count\", \r\n" + 
 				"cliente_id_cliente \"cli\" \r\n" + 
 				"from JPA_T_RESERVA \r\n" + 
 				"group by CLIENTE_ID_CLIENTE)\r\n" + 
-				"select o.\"cli\"\r\n" + 
-				"from o where o.\"count\" = (select max(o.\"count\") from o);", Integer.class).getResultList();
+				"select * \r\n" + 
+				"from JPA_T_CLIENTE where id_cliente in "
+				+ "(select o.\"cli\" from o where o.\"count\" = "
+				+ "(select max(o.\"count\") from o))", Cliente.class).getResultList();
+		
+		List<Cliente> teste2 = em.createQuery("from Cliente where id in (select r.cliente.id from Reserva r group by r.cliente.id having count(r) = (select max(count(rm)) from Reserva rm group by rm.cliente))", Cliente.class).getResultList();
+		//return em.createQuery("from Cliente where id in (:ids)", Cliente.class).setParameter("ids", teste /*.stream().map(BigDecimal::intValue).collect(Collectors.toList())).getResultList();*/
+		return teste2;
 	}
 
 	
