@@ -4,4 +4,6 @@ import br.com.fiap.jpa.entity.Pagamento;
 
 public interface PagamentoDAO extends GenericDAO<Pagamento, Integer>{
 
+	double somarPorPassageiro(int p);
+	
 }

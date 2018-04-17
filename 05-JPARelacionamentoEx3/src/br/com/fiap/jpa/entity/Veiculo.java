@@ -34,7 +34,9 @@ public class Veiculo {
 	@ManyToMany(mappedBy = "veiculos")
 	List<Motorista> motoristas;
 
-	
+	public Veiculo() {
+		// TODO Auto-generated constructor stub
+	}
 	
 	public Veiculo( String placa, String cor, int ano) {
 		super();

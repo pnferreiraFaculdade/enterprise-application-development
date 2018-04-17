@@ -116,6 +116,8 @@ public class Corrida {
 		this.passageiro = passageiro;
 	}
 	
-	
+	public Corrida() {
+		// TODO Auto-generated constructor stub
+	}
 	
 }

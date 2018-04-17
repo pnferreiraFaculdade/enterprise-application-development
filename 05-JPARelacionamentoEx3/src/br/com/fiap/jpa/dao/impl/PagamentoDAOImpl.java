@@ -10,4 +10,10 @@ public class PagamentoDAOImpl extends GenericDAOImpl<Pagamento, Integer> impleme
 		super(em);
 	}
 
+	@Override
+	public double somarPorPassageiro(int p) {
+		// TODO Auto-generated method stub
+		return em.createQuery("select sum(p.valor) from Pagamento p where p.corrida.passageiro.codigo = :pag", Double.class).setParameter("pag", p).getSingleResult();
+	}
+
 }

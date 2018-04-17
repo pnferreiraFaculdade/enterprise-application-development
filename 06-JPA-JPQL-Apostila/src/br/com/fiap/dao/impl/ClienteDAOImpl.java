@@ -67,22 +67,28 @@ public class ClienteDAOImpl extends GenericDAOImpl<Cliente,Integer> implements C
 	@Override
 	public List<Cliente> maiorReserva() {
 		// TODO Auto-generated method stub
-		List<Cliente> teste =  em.createNativeQuery("with o as (select \r\n" + 
-				"count(cd_reserva) \"count\", \r\n" + 
-				"cliente_id_cliente \"cli\" \r\n" + 
-				"from JPA_T_RESERVA \r\n" + 
-				"group by CLIENTE_ID_CLIENTE)\r\n" + 
-				"select * \r\n" + 
+		List<Cliente> teste =  em.createNativeQuery("with o as (select " + 
+				"count(cd_reserva) \"count\", " + 
+				"cliente_id_cliente \"cli\" " + 
+				"from JPA_T_RESERVA " + 
+				"group by CLIENTE_ID_CLIENTE) " + 
+				"select * " + 
 				"from JPA_T_CLIENTE where id_cliente in "
 				+ "(select o.\"cli\" from o where o.\"count\" = "
 				+ "(select max(o.\"count\") from o))", Cliente.class).getResultList();
 		
-		List<Cliente> teste2 = em.createQuery("from Cliente where id in (select r.cliente.id from Reserva r group by r.cliente.id having count(r) = (select max(count(rm)) from Reserva rm group by rm.cliente))", Cliente.class).getResultList();
+		List<Cliente> teste2 = em.createQuery("from Cliente where id in "
+				+ "(select r.cliente.id from Reserva r group by r.cliente.id having count(r) = "
+				+ "(select max(count(rm)) from Reserva rm group by rm.cliente))", 
+				Cliente.class).getResultList();
+		
+		List<BigDecimal> bum = em.createNativeQuery("select id_cliente from jpa_t_cliente").getResultList();
+		/*for (String integer : bum) {
+			System.out.println(bum);
+		}*/
 		//return em.createQuery("from Cliente where id in (:ids)", Cliente.class).setParameter("ids", teste /*.stream().map(BigDecimal::intValue).collect(Collectors.toList())).getResultList();*/
 		return teste2;
-	}
-
-	
+	} 
 }
 
 

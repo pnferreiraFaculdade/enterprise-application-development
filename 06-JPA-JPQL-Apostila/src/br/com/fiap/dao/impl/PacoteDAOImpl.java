@@ -40,4 +40,11 @@ public class PacoteDAOImpl extends GenericDAOImpl<Pacote,Integer> implements Pac
 		return em.createQuery("select avg(p.preco) from Pacote p", Double.class).getSingleResult();
 	}
 
+	@Override
+	public List<Pacote> buscarPorDescricao(String desc) {
+		// TODO Auto-generated method stub
+		return em.createNativeQuery("SELECT * FROM JPA_T_PACOTE WHERE DS_PACOTE LIKE :d", 
+				Pacote.class).setParameter("d", "%" + desc + "%").getResultList();
+	}
+
 }

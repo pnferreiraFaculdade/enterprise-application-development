@@ -27,10 +27,12 @@ public class Teste {
 		EntityManager em = fabrica.createEntityManager();
 	
 		Corrida corrida = new Corrida(12, "FIAP Aclima��o", "FIAP Paulista", Calendar.getInstance(), 10);
-		
+		Corrida corrida2 = new Corrida(13, "fisdjfisjiom", "Baaaaaa", Calendar.getInstance(), 12);
 		Passageiro passageiro = new Passageiro("Joaozinho", new GregorianCalendar(1999, Calendar.JANUARY, 2), Genero.MASCULINO);
+		Passageiro passageiro2 = new Passageiro("Casquinha", new GregorianCalendar(1876, Calendar.JANUARY, 14), Genero.FEMININO);
 		
 		Motorista motorista = new Motorista(123, "Aninha", new GregorianCalendar(1990, Calendar.JANUARY, 2), null, Genero.FEMININO);
+		Motorista motorista2 = new Motorista(124, "Bananinha", new GregorianCalendar(1981, Calendar.JANUARY, 24), null, Genero.MASCULINO);
 		
 		Pagamento pagamento = new Pagamento(56, Calendar.getInstance(), 10, "Dinheiro");
 		
@@ -38,7 +40,9 @@ public class Teste {
 		Veiculo veiculo2 = new Veiculo("BBB9099", "Azul", 2015);
 		
 		corrida.setMotorista(motorista);
+		corrida2.setMotorista(motorista2);
 		corrida.setPassageiro(passageiro);
+		corrida2.setPassageiro(passageiro2);
 		
 		corrida.setPagamento(pagamento); //mappedBy precisa setar o outro lado para a cascata
 		pagamento.setCorrida(corrida);
@@ -52,6 +56,7 @@ public class Teste {
 		CorridaDAO dao = new CorridaDAOImpl(em);
 		
 		try {
+			dao.cadastrar(corrida2);
 			dao.cadastrar(corrida); //cadastra todas as entidades por cascata
 			dao.commit();
 		} catch (CommitException e) {

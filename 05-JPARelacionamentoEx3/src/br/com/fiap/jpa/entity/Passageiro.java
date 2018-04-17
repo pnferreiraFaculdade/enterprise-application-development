@@ -87,7 +87,9 @@ public class Passageiro {
 	public void setCorridas(List<Corrida> corridas) {
 		this.corridas = corridas;
 	}
-	
+	public Passageiro() {
+		// TODO Auto-generated constructor stub
+	}
 	
 	
 }

@@ -37,7 +37,7 @@ public class Motorista {
 	@Column(name = "ds_genero")
 	private Genero genero;
 	
-	@ManyToMany
+	@ManyToMany(cascade=CascadeType.PERSIST)
 	@JoinTable(name = "T_VEICULO_MOTORISTA", joinColumns = { @JoinColumn(name = "cd_motorista")}, inverseJoinColumns = @JoinColumn(name = "cd_veiculo"))
 	private List<Veiculo> veiculos;
 	
@@ -116,6 +116,8 @@ public class Motorista {
 	}
 	
 	
-	
+	public Motorista() {
+		// TODO Auto-generated constructor stub
+	}
 	
 }

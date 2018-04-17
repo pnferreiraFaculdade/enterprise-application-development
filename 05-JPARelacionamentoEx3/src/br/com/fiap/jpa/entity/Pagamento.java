@@ -27,6 +27,9 @@ public class Pagamento {
 	@OneToOne
 	@JoinColumn(name = "cd_corrida")
 	private Corrida corrida;
+	public Pagamento() {
+		// TODO Auto-generated constructor stub
+	}
 	public Pagamento(int codigo, Calendar data, float valor, String formaPag) {
 		super();
 		this.codigo = codigo;

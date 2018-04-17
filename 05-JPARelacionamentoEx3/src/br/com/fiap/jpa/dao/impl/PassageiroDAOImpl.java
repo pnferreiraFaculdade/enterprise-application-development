@@ -10,4 +10,6 @@ public class PassageiroDAOImpl extends GenericDAOImpl<Passageiro, Integer> imple
 		super(em);
 	}
 
+
+
 }
