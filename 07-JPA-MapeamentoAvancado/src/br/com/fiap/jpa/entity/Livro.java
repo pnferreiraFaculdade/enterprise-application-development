@@ -11,7 +11,7 @@ public class Livro {
 	private long isbn;
 	@Column(name="ds_titulo", nullable=false)
 	private String titulo;
-	@Column(name="ds_categoria", nullable=)
+	//@Column(name="ds_categoria", nullable=)
 	private CategoriaLivro categoria;
 	private int numPaginas;
 	
