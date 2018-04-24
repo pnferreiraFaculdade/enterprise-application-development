@@ -25,7 +25,7 @@ public class Pagamento {
 	@Column(name = "ds_forma_pagamento", nullable = false)
 	private String formaPag;
 	@OneToOne
-	@JoinColumn(name = "cd_corrida")
+	@JoinColumn(name = "cd_corrida", nullable = false)
 	private Corrida corrida;
 	public Pagamento() {
 		// TODO Auto-generated constructor stub

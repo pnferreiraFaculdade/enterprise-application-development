@@ -27,7 +27,7 @@ public class ConsoleView {
 	public static void main(String[] args) {
 		EntityManagerFactory factory = EntityManagerFactorySingleton.getInstance();
 		EntityManager em = factory.createEntityManager();
-		
+		try {
 		CidadeDAO cidadeDao = new CidadeDAOImpl(em);
 		List<Cidade> lista = cidadeDao.listar();
 		for (Cidade cidade : lista) {
@@ -90,7 +90,7 @@ public class ConsoleView {
 		System.out.println(pacoteDao.contarTotal());
 		
 		System.out.println(pacoteDao.mediaPreco());
-		try {
+		
 		List<Cliente> lista10 = clienteDao.maiorReserva();
 		for (Cliente cliente : lista10) {
 			System.out.println(cliente.getNome());
